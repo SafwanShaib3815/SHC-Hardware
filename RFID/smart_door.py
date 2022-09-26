@@ -4,13 +4,14 @@ import time # getting the time libraly
 from threading import Thread 
 from firebase import firebase
 from firebase import firebase
+import datetime
 
 #from mfrc522 import SimpleMFRC522
 
 #my imports
 import rfid #script to read the rfid tags
 import behave #responce actions  script
-import blink #linking led script
+import blink #blinking led script
 #import temp_humid #temperature and humidity sensor script 
 
 pinsOut = [6,13,19,26] #creating a list (array) with the number of GPIO's that we use 
@@ -19,6 +20,9 @@ stop_blink_thread=False
 GPIO.setwarnings(False)
 name=""
 ID=0
+dt=""
+path=""
+counter=0
 #initializing the firebase object
 myDB = firebase.FirebaseApplication("https://smarthomecontroller-a7978-default-rtdb.firebaseio.com/", None)
 
@@ -38,6 +42,8 @@ while True:
         behave.open_door() #opens the door
         name = "Mr White"
         ID = id
+        dt=datetime.datetime.now()
+        path="/Door Records/Mr White"
         print ("****************************\n--Door closed Mr. White\n****************************")	
 
     #if blue fob taped
@@ -48,6 +54,8 @@ while True:
         behave.open_door() #oepns the door 
         name = "Mr Blue"
         ID = id
+        dt=datetime.datetime.now()
+        path="/Door Records/Mr Blue"
 
         print ("****************************\n--Door closed Mr. Blue\n****************************")
 
@@ -64,13 +72,22 @@ while True:
         GPIO.output(pinsOut, GPIO.HIGH)
         name = "Unauthorized user attempt!"
         ID = id
+        dt=datetime.datetime.now()
+        path="/Door Records/Unauthorized"
     data= {
         "name": name,
-        "ID" : ID 
+        "ID" : ID, 
+        "Time": dt
         }
 
     #print(data)
-    myDB.post("Door Records",data)
+    
+    path=path+str(counter)
+    rtrn=myDB.post(path,data)
+    #print(rtrn)
+    getd=myDB.child("/Dummy Sensors/RFID").get()
+    print(getd.key())
+    counter = counter+1
 
 if KeyboardInterrupt:
     GPIO.cleanup()
