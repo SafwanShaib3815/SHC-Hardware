@@ -3,6 +3,13 @@ import time
 import sys
 import blink
 from threading import Thread
+import user_db
+
+#initializing realtime database
+
+db = user_db.User_db("somemail@mail.com", "Admin1234#")#use this function to post to db db.data_send("temp", "humid", "motion", "smoke", "rfid white")
+
+
 
 # change these as desired - they're the pins connected from the
 # SPI port on the ADC to the Cobbler
@@ -79,7 +86,9 @@ def check_smoke_blink():
                            time.sleep(0.5)
                   try:
                       print("\n\nGas leakage")
-                      sys.stdout.write("\rCurrent Gas AD vaule %s " % str(("%.2f"%((COlevel/1024.)*3.3)))+"V")
+                      gas_val = str("%.2f"%((COlevel/1024.)*3.3))+" V"
+                      sys.stdout.write("\rCurrent Gas AD vaule %s "  + gas_val )
+                      db.data_send(None,None, None, gas_val, None) 
                       #print("Current Gas AD vaule = %d" + str("%.2f"%((COlevel/1024.)*3.3))+" V")
                       time.sleep(1)
                   except:
@@ -103,7 +112,10 @@ def check_smoke(stop):
                            time.sleep(0.5)
                   try:
                       print("\n\nGas leakage")
-                      sys.stdout.write("\rCurrent Gas AD vaule %s "  + str("%.2f"%((COlevel/1024.)*3.3))+" V")
+                      gas_val = str("%.2f"%((COlevel/1024.)*3.3))+" V"
+                      sys.stdout.write("\rCurrent Gas AD vaule %s "  + gas_val )
+                      db.data_send(None,None, None, gas_val, None) 
+
                       time.sleep(1)
                   except:
                       print ("something wrong heappened")

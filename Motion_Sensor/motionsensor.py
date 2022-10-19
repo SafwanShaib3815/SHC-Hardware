@@ -1,5 +1,11 @@
 import RPi.GPIO as GPIO
 import time
+import user_db
+
+#initializing the database user
+db = user_db.User_db("somemail@mail.com", "Admin1234#")
+
+
 
 #GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -20,6 +26,7 @@ while True:
     elif i==1:               #When output from motion sensor is HIGH
         print ("Intruder detected",i)
         GPIO.output(motionOutPin, 0)  #Turn ON LED
-        time.sleep(0.1)
+        db.data_send(None, None, "Motion Detected", None, None)
+        time.sleep(3)
         GPIO.cleanup()
     GPIO.cleanup()

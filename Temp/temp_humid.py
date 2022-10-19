@@ -25,6 +25,12 @@ import sys
 import pyrebase
 from signal import signal, SIGINT
 from threading import Thread
+import user_db
+
+#initializing realtime database
+db = user_db.User_db("somemail@mail.com", "Admin1234#") #use this function to post data to db db.data_send("temp", "humid", "motion", "smoke", "rfid white")
+
+
 
 led_out=23
 stop_blink_thread = False
@@ -49,9 +55,11 @@ def watch_temp_blink():
     blink_thread = Thread(target=blink.blink_led, args=(led_out, lambda: stop_blink_thread,)) #a thread to start the blink task
     blink_thread.start()
 
+#        db.data_send(sensor.temperature, sensor.relative_humidity, None, None, None)
     while True:
+        print(type(sensor.temperature))
         try:
-            time.sleep(1)
+            time.sleep(2)
             print("Temperature: ",format(sensor.temperature),       end='\t\t')
             #sys.stdout.write("\rTemperature: %d" % sensor.temperature)
             time.sleep(0.25)
