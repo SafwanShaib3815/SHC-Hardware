@@ -79,7 +79,7 @@ def check_smoke_blink():
                            time.sleep(0.5)
                   try:
                       print("\n\nGas leakage")
-                      sys.stdout.write("\rCurrent Gas AD vaule %s " % str(("%.2f"%((COlevel/1024.)*3.3)))+"V")
+                      sys.stdout.write("\n\rCurrent Gas AD vaule %s " % str(("%.2f"%((COlevel/1024.)*3.3)))+"V")
                       #print("Current Gas AD vaule = %d" + str("%.2f"%((COlevel/1024.)*3.3))+" V")
                       time.sleep(1)
                   except:
@@ -89,8 +89,6 @@ def check_smoke_blink():
 
 def check_smoke(stop):
          init()
-         blink_thread = Thread(target=blink.blink_led, args=(indicator, lambda: stop_blink_thread,)) #start a new thread to blink indicator
-         blink_thread.start()
 
          print("please wait...")
          time.sleep(1)
@@ -102,8 +100,8 @@ def check_smoke(stop):
                            print("Gas not leak")
                            time.sleep(0.5)
                   try:
-                      print("\n\nGas leakage")
-                      sys.stdout.write("\rCurrent Gas AD vaule %s "  + str("%.2f"%((COlevel/1024.)*3.3))+" V")
+                      #print("\n\nGas leakage")
+                      sys.stdout.write("\n\rCurrent Gas AD vaule %s "  + str("%.2f"%((COlevel/1024.)*3.3))+" V")
                       time.sleep(1)
                   except:
                       print ("something wrong heappened")
@@ -120,5 +118,5 @@ if __name__ =='__main__':
              GPIO.cleanup()
              exit(1)
 
-GPIO.cleanup()
+#GPIO.cleanup()
          

@@ -3,7 +3,6 @@ import RPi.GPIO as GPIO
 import time # getting the time libraly
 from threading import Thread 
 from firebase import firebase
-from firebase import firebase
 import datetime
 
 #from mfrc522 import SimpleMFRC522
@@ -59,21 +58,25 @@ while True:
 
         print ("****************************\n--Door closed Mr. Blue\n****************************")
 
+    
     else:
+        #actions to do in case of unuthorized people
         print("Unauthorized person!!")
         GPIO.setmode(GPIO.BCM) #setting the mode for output pins
-        GPIO.setup(pinsOut, GPIO.OUT) #output pins configured to out
         stop_blink_thread=True #causes the blinking thread to terminate
         GPIO.setup(led_out, GPIO.OUT) 
         GPIO.output(led_out, GPIO.LOW) #turn indicator led OFF while unauthorized person trying to enter
-        #time.sleep()
-        GPIO.output(pinsOut, GPIO.LOW) 
         time.sleep(1.5)
-        GPIO.output(pinsOut, GPIO.HIGH)
+
+        #Values to be sent to DB
         name = "Unauthorized user attempt!"
         ID = id
         dt=datetime.datetime.now()
-        path="/Door Records/Unauthorized"
+        path="/Door Records/Unauthorized" #path of which data will be sent to in DB
+
+    
+    command = False
+    #final object to be sent to DB
     data= {
         "name": name,
         "ID" : ID, 
@@ -82,12 +85,12 @@ while True:
 
     #print(data)
     
-    path=path+str(counter)
-    rtrn=myDB.post(path,data)
+    #path=path+str(counter)
+    rtrn=myDB.post(path,data) #send user name, card number and time to DB
     #print(rtrn)
-    getd=myDB.child("/Dummy Sensors/RFID").get()
-    print(getd.key())
-    counter = counter+1
+    #getd = myDB.get('/Dummy Sensors/RFID/', None)
+    #print(getd)
+    #counter = counter+1
 
 if KeyboardInterrupt:
     GPIO.cleanup()

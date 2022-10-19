@@ -22,12 +22,19 @@ import board
 import busio
 import adafruit_am2320
 import sys
+import pyrebase
 from signal import signal, SIGINT
 from threading import Thread
 
 led_out=23
 stop_blink_thread = False
 
+config = {
+        "apiKey": "AIzaSyBSi0GAMC8quBMtVfXZ-elPTCkQ6S7jGeM",
+        "authDomain": "smarthomecontroller-a7978.firebaseapp.com",
+        "databaseURL": "https://smarthomecontroller-a7978-default-rtdb.firebaseio.com/",
+        "storageBucket": "smarthomecontroller-a7978.appspot.com"
+        }
 #my imports
 import blink
 

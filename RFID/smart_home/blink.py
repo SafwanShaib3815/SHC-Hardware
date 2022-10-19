@@ -31,4 +31,4 @@ if __name__ == "__main__":
         print("Please provide pin number based on BCM mode")
         exit(0)
     blink_led(sys.argv[1], lambda: False) 
-    GPIO.cleanup()
+    #GPIO.cleanup()

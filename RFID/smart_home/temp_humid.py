@@ -62,15 +62,15 @@ def watch_temp(stop):
 
     while True:
         try:
-            time.sleep(0.25)
+            time.sleep(0.75)
             sys.stdout.write("\rTemperature: %d" % sensor.temperature)
-            time.sleep(0.25)
+            time.sleep(0.75)
             sys.stdout.write("\t\tHumidity: %d" % sensor.relative_humidity)
         except KeyboardInterrupt:
             quit()
         except:
             print("\r Trying again                                  ", end="")
-            time.sleep(.5)
+            time.sleep(0.5)
         if stop():
             return
 

@@ -2,8 +2,11 @@
 import sys
 import time
 import RPi.GPIO as GPIO
+from firebase import firebase
+import behave
 
 
+myDB = firebase.FirebaseApplication("https://smarthomecontroller-a7978-default-rtdb.firebaseio.com/", None)
 def blink_led(pin, stop):
     #if len(sys.argv) < 2:
     if pin == None: 
@@ -19,6 +22,10 @@ def blink_led(pin, stop):
             time.sleep(0.5)
             GPIO.output(pin, GPIO.LOW)
             time.sleep(0.5)
+            #if myDB.get('/Dummy Sensors/RFID/', None):
+            #    print("opening door remotely")
+            #    behave.open_door()
+
             if stop():
                 return
     except KeyboardInterrupt:
