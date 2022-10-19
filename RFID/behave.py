@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 relay_pin1 = 6 #Abdulrahman
-relay_pin2 = 13 #Nikero
+relay_pin2 = 13 #Nkeiru
 relay_pin3 = 19 #safwan
 relay_pin4 = 26 #tanush
 
