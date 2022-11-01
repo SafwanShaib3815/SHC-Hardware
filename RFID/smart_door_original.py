@@ -64,7 +64,9 @@ while True:
 
         #Values to be sent to DB
         name = "Unauthorized user attempt!"
-    db.data_send(None, None, None, None, name)
+    db.data_send_set(None, None, None, None, name)
+    db.data_send_push(None, None, None, None, name)
+
 
        
     if KeyboardInterrupt:

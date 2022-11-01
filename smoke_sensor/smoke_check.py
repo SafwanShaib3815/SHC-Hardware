@@ -88,7 +88,7 @@ def check_smoke_blink():
                       print("\n\nGas leakage")
                       gas_val = str("%.2f"%((COlevel/1024.)*3.3))+" V"
                       sys.stdout.write("\rCurrent Gas AD vaule %s "  + gas_val )
-                      db.data_send(None,None, None, gas_val, None) 
+                      db.data_send_set(None,None, None, gas_val, None) 
                       #print("Current Gas AD vaule = %d" + str("%.2f"%((COlevel/1024.)*3.3))+" V")
                       time.sleep(1)
                   except:
@@ -114,7 +114,7 @@ def check_smoke(stop):
                       print("\n\nGas leakage")
                       gas_val = str("%.2f"%((COlevel/1024.)*3.3))+" V"
                       sys.stdout.write("\rCurrent Gas AD vaule %s "  + gas_val )
-                      db.data_send(None,None, None, gas_val, None) 
+                      db.data_send_set(None,None, None, gas_val, None) 
 
                       time.sleep(1)
                   except:

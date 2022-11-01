@@ -44,6 +44,7 @@ def watch_temp_blink():
     #i2c = busio.I2C(board.SCL, board.SDA) OR :
     i2c = board.I2C() # create the I2C shared bus
     sensor = adafruit_am2320.AM2320(i2c) 
+    print('Running. Press CTRL-C twice to exit.\n')
     blink_thread = Thread(target=blink.blink_led, args=(led_out, lambda: stop_blink_thread,)) #a thread to start the blink task
     blink_thread.start()
 
@@ -58,7 +59,7 @@ def watch_temp_blink():
             #sys.stdout.write("\rTemperature: %d" % sensor.temperature)
             print("Humidity:",humid, "%")
             #sys.stdout.write("\t\tHumidity: %d" % sensor.relative_humidity)
-            db.data_send_set(temp, humid , None, None, None)
+            db.data_send(temp, humid , None, None, None)
             #print(type(typ))
         except KeyboardInterrupt:
             quit()
@@ -80,7 +81,6 @@ def watch_temp(stop):
             time.sleep(0.25)
             print("Humidity: "+sensor.relative_humidity+"%")
             #sys.stdout.write("\t\tHumidity: %d" % sensor.relative_humidity)
-            db.data_send_set(temp, humid , None, None, None)
         except KeyboardInterrupt:
             quit()
         except:

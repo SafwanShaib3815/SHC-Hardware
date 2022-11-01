@@ -11,7 +11,7 @@ import behave #responce actions  script
 import blink #linking led script
 import smoke_check 
 import temp_humid  
-import smart_door
+#import smart_door
 import motionsensor
 #import temp_humid #temperature and humidity sensor script 
 
@@ -30,7 +30,7 @@ smoke_thread = Thread(target=smoke_check.check_smoke, args=(lambda: stop_smoke_t
 temp_thread = Thread(target=temp_humid.watch_temp, args=(lambda: stop_temp_thread,))
 #door_thread = Thread(target=../smart_door.check_door, args=(lambda: stop_door_thread,))
 motion_thread = Thread(target=motionsensor.check_motion, args=(lambda : stop_motion_thread, ))#instenciating a thread for the blink task
-#blink_thread = Thread(target=blink.blink_led, args=(led_out, lambda : stop_blink_thread, ))#instenciating a thread for the blink task
+blink_thread = Thread(target=blink.blink_led, args=(led_out, lambda : stop_blink_thread, ))#instenciating a thread for the blink task
 
 smoke_thread.start()
 time.sleep(7)
@@ -38,8 +38,8 @@ time.sleep(7)
 time.sleep(2)
 temp_thread.start()
 time.sleep(3)
-door_thread.start()
-time.sleep(3)
+#door_thread.start()
+#time.sleep(3)
 motion_thread.start()
 time.sleep(3)
 import test

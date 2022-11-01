@@ -102,7 +102,7 @@ def check_smoke(stop):
                   try:
                       #print("\n\nGas leakage")
                       sys.stdout.write("\n\rCurrent Gas AD vaule %s "  + str("%.2f"%((COlevel/1024.)*3.3))+" V")
-                      time.sleep(1)
+                      time.sleep(2)
                   except:
                       print ("something wrong heappened")
                       GPIO.cleanup()
