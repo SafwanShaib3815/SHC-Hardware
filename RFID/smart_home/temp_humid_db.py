@@ -90,5 +90,5 @@ def watch_temp(stop):
             return
 
 if __name__ == "__main__":
-    watch_temp_blink()
+    watch_temp(False)
 

@@ -1,6 +1,9 @@
 import RPi.GPIO as GPIO
 import time
 import sys
+import user_db
+
+db = user_db.User_db("somemail@mail.com", "Admin1234#")
 
 #GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -9,6 +12,7 @@ GPIO.setwarnings(False)
 motionInPin = 5
 motionOutPin = 13
 skip_send = None
+
 
 def check_motion_blink():
     while True:
@@ -37,7 +41,7 @@ def check_motion_blink():
 
         #GPIO.cleanup()
 def check_motion(stop):
-
+    skip_send = None
     while True:
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(motionInPin, GPIO.IN)         #Read output from PIR motion sensor
@@ -57,18 +61,14 @@ def check_motion(stop):
             db.data_send_set(None, None, "Motion Detected!!", None, None)
             time.sleep(3)
             skip_send = False
-            GPIO.cleanup()
-
-       if stop():
+        if stop:
             return
-
-        #GPIO.cleanup()
-        
+            #GPIO.cleanup()
 #GPIO.cleanup()
-
+    
 #def stop():
     #return False
 
 if __name__=="__main__":
-    check_motion_blink()
+    check_motion(False)
     #check_motion(stop)
