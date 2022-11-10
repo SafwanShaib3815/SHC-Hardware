@@ -23,18 +23,18 @@ def check_motion_blink():
         if i==0:                 #When output from motion sensor is LOW
             if not skip_send:#skip this if skip_send is true
                 db.data_send_set(None, None, "No Motion Detected", None, None)
-                print ("No Motion Detected",i)
+                print ("\n\nNo Motion Detected",i)
             GPIO.output(motionOutPin, 1)  #Turn OFF LED
             skip_send = True #allows to skip sending same thing to the db each loop
             time.sleep(0.1)
-            GPIO.cleanup()
+            #GPIO.cleanup()
         elif i==1:               #When output from motion sensor is HIGH
-            print ("Motion Detected",i)
+            print ("\n\nMotion Detected",i)
             GPIO.output(motionOutPin, 0)  #Turn ON LED
             db.data_send_set(None, None, "Motion Detected!!", None, None)
             time.sleep(3)
             skip_send = False
-            GPIO.cleanup()
+            #GPIO.cleanup()
 
 
 
@@ -50,23 +50,19 @@ def check_motion(stop):
         if i==0:                 #When output from motion sensor is LOW
             if not skip_send:#skip this if skip_send is true
                 db.data_send_set(None, None, "No Motion Detected", None, None)
-                print ("No Motion Detected",i)
+                print ("\nNo Motion Detected",i)
             GPIO.output(motionOutPin, 1)  #Turn OFF LED
             skip_send = True #allows to skip sending same thing to the db each loop
             time.sleep(0.1)
-            GPIO.cleanup()
         elif i==1:               #When output from motion sensor is HIGH
-            print ("Motion Detected",i)
+            print ("\nMotion Detected",i)
             GPIO.output(motionOutPin, 0)  #Turn ON LED
             db.data_send_set(None, None, "Motion Detected!!", None, None)
             db.data_send_push(None, None, "Date and time a motion was detected", None, None)
             time.sleep(3)
             skip_send = False
-            #GPIO.cleanup()
         if stop():
             return
-            #GPIO.cleanup()
-        #GPIO.cleanup()
     
 if __name__=="__main__":
 #    check_motion_blink()
