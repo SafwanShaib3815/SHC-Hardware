@@ -1,7 +1,7 @@
 # getting the main GPIO libraly
 import RPi.GPIO as GPIO 
 import time # getting the time libraly
-from firebase import firebase
+#from firebase import firebase
 import datetime
 
 
