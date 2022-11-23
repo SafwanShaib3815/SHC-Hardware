@@ -21,22 +21,16 @@ import time
 import board
 import busio
 import adafruit_am2320
-import sys
-import pyrebase
-from signal import signal, SIGINT
+#import sys
+#from signal import signal, SIGINT
 from threading import Thread
+
+#my imports
+import behave
 import user_db
 
 #initializing realtime database
 db = user_db.User_db("somemail@mail.com", "Admin1234#") #use this function to post data to db db.data_send("temp", "humid", "motion", "smoke", "rfid white")
-
-
-
-led_out=23
-stop_blink_thread = False
-#my imports
-#from sys import exit
-
 
 def watch_temp(stop):
     i2c = board.I2C() # create the I2C shared bus
@@ -46,9 +40,20 @@ def watch_temp(stop):
     while True:
         try:
             time.sleep(2)
-            temp=format(sensor.temperature)
+            temp=format(sensor.temperature) #string value of the temperature
             time.sleep(2)
-            humid=format(sensor.relative_humidity)
+            humid=format(sensor.relative_humidity) #string value of the humidity
+
+            #float values of the temp and humidity
+            temp_flt = float(temp)
+            humid_flt = float(humid)
+            #perform actions based on the temp/humid values
+            if temp_flt >= 27:
+                behave.ac_on()
+                print("AC is on")
+            else:
+                behave.ac_off()
+            
             print("\nTemperature: ",temp,       end='\t\t')
             #sys.stdout.write("\rTemperature: %d" % sensor.temperature)
             print("Humidity:",humid, "%")

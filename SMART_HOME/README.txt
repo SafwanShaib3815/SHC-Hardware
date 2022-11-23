@@ -1,19 +1,29 @@
+----------------------------------------
+firebase related notes 
+----------------------------------------
 
-*************************************** firebase related notes **************************************
+
 install the following libraries:
 
 `sudo pip3 install requests==1.1.0`
 `sudo pip3 install python-firebase`
 #####################################################################################################################################################################
 
-*************************************** SPI bus conflict **************************************
+----------------------------------------
+SPI bus conflict 
+----------------------------------------
+
 
 This project has two devices that use the SPI bus with different configration(RFID and MQ2 sensors), to allow the bus to work again with the rfid sensor resetting the bus is required using the 'dtparam' command as a root, for that install the needed library using the following command:
 
 `sudo apt-get install libraspberry-bin` 
 #####################################################################################################################################################################
 
-*************************************** Setting up python for RFID **************************************
+----------------------------------------
+Setting up python for RFID 
+----------------------------------------
+
+
 Upgrading:
 `sudo apt-get update`
 `sudo apt-get upgrade`
@@ -32,5 +42,36 @@ Two ways to install the MFRC522:
 2)
 `sudo pip3 install mfrc522`
 
+for the tutorial on how to use the MFRC522 reader check websit:
+
+https://pimylifeup.com/raspberry-pi-rfid-rc522/
 #####################################################################################################################################################################
+
+----------------------------------------
+AM2320 Temperature and Humidity sensor  |
+----------------------------------------
+
+
+for the board module to be imported, first you have to install it using one of the following commands until it works (exclude the backticks `):
+
+` sudo pip install board `
+` sudo pip3 install board `
+` sudo pip3 install adafruit-blinka ` 
+********************************************************************************************************************
+for the busio library to be imported you can run command number 3 above
+
+********************************************************************************************************************
+for the adafruit-AM2320 to be imported install the dependency using following command:
+
+` sudo pip3 install adafruit-circuitpython-am2320 `
+
+see website: 
+https://pypi.org/project/adafruit-circuitpython-am2320
+
+********************************************************************************************************************
+python simple test code:
+https://learn.adafruit.com/adafruit-am2320-temperature-humidity-i2c-sensor/python-circuitpython
+********************************************************************************************************************
+arduino test code:
+https://learn.adafruit.com/adafruit-am2320-temperature-humidity-i2c-sensor/arduino-usage
 

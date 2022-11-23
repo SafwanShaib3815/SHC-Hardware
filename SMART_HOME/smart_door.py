@@ -1,9 +1,7 @@
 # getting the main GPIO libraly
 import RPi.GPIO as GPIO 
 import time # getting the time libraly
-#from firebase import firebase
 import datetime
-
 
 #my imports
 import rfid #script to read the rfid tags
@@ -27,16 +25,9 @@ def check_door(stop):
         
     while True:
         print("\n\n\nRFID sensor active...")#opening message
-        #GPIO.setup(rfidcs, GPIO.OUT)
-        #GPIO.setup(smkcs, GPIO.OUT)
-        
-        #GPIO.output(rfidcs, True)
-        #GPIO.output(smkcs, True)
-        #GPIO.output(rfidcs, False)
-        #time.sleep(1)
+
         id = rfid.read_rfid()
         time.sleep(3)
-        #GPIO.output(rfidcs, True)
         #if white card taped
         if id == 291269522084:
             print("\nMr. White is allowed to enter>>>>>>\n")
@@ -62,8 +53,6 @@ def check_door(stop):
 
         if stop():
             return
-#GPIO.cleanup()
-
 
 if __name__ == '__main__':
     check_door(lambda:False)
