@@ -2,11 +2,9 @@
 import sys
 import time
 import RPi.GPIO as GPIO
-from firebase import firebase
 import behave
 
 
-myDB = firebase.FirebaseApplication("https://smarthomecontroller-a7978-default-rtdb.firebaseio.com/", None)
 def blink_led(pin, stop):
     #if len(sys.argv) < 2:
     if pin == None: 

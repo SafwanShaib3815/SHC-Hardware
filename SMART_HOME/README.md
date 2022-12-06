@@ -1,19 +1,15 @@
 ----------------------------------------
-firebase related notes 
+Database related notes 
 ----------------------------------------
-
-
 install the following libraries:
 
-`sudo pip3 install requests==1.1.0`
-`sudo pip3 install python-firebase`
+`sudo pip3 install pyrebase`
+`sudo pip3 install self`
 #####################################################################################################################################################################
 
 ----------------------------------------
 SPI bus conflict 
 ----------------------------------------
-
-
 This project has two devices that use the SPI bus with different configration(RFID and MQ2 sensors), to allow the bus to work again with the rfid sensor resetting the bus is required using the 'dtparam' command as a root, for that install the needed library using the following command:
 
 `sudo apt-get install libraspberry-bin` 
@@ -22,9 +18,22 @@ This project has two devices that use the SPI bus with different configration(RF
 ----------------------------------------
 Setting up python for RFID 
 ----------------------------------------
+follow the following(mandatory):
+1) Enable the spi bus on rpi using `sudo raspi-config` command > interfaces > spi > yes
 
+2) Two ways to install the MFRC522:
+FIRST:
+`sudo pip3 install mfrc522`
 
-Upgrading:
+SECOND:
+-move to the directory where you wanna download the project from github
+-clone the library project from github using the command `git clone https://github.com/mxgxw/MFRC522-python.git`
+
+for the tutorial on how to use the MFRC522 reader check websit:
+
+https://pimylifeup.com/raspberry-pi-rfid-rc522/
+
+You may need to run follwing commands(Optional):
 `sudo apt-get update`
 `sudo apt-get upgrade`
 
@@ -33,18 +42,6 @@ installing necessary libraries:
 
 To install spi related libraries:
  `sudo pip3 install spidev`
-
-Two ways to install the MFRC522:
-1)
--move to the directory where you wanna download the project from github
--clone the library project from github using the command `git clone https://github.com/mxgxw/MFRC522-python.git`
-
-2)
-`sudo pip3 install mfrc522`
-
-for the tutorial on how to use the MFRC522 reader check websit:
-
-https://pimylifeup.com/raspberry-pi-rfid-rc522/
 #####################################################################################################################################################################
 
 ----------------------------------------
@@ -74,4 +71,11 @@ https://learn.adafruit.com/adafruit-am2320-temperature-humidity-i2c-sensor/pytho
 ********************************************************************************************************************
 arduino test code:
 https://learn.adafruit.com/adafruit-am2320-temperature-humidity-i2c-sensor/arduino-usage
+#####################################################################################################################################################################
+
+----------------------------------------
+MQ2 Gas Sensor
+----------------------------------------
+check below repository:
+https://github.com/adafruit/Adafruit_CircuitPython_MCP3xxx/
 

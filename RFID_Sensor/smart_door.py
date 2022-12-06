@@ -2,11 +2,10 @@
 import RPi.GPIO as GPIO 
 import time # getting the time libraly
 from threading import Thread 
-from firebase import firebase
 import datetime
 
 #from mfrc522 import SimpleMFRC522
-
+#okayenter!
 #my imports
 import rfid #script to read the rfid tags
 import behave #responce actions  script

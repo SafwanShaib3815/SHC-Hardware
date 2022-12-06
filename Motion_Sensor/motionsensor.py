@@ -59,7 +59,7 @@ def check_motion(stop):
             print ("Motion Detected",i)
             GPIO.output(motionOutPin, 0)  #Turn ON LED
             db.data_send_set(None, None, "Motion Detected!!", None, None)
-            db.data_send_push(None, None, "Date and time a motion was detected", None, None)
+            db.data_send_push(None, None, "-----Motion Time-----^", None, None)
             time.sleep(3)
             skip_send = False
             #GPIO.cleanup()

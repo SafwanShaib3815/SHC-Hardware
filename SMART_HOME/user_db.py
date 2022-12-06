@@ -46,7 +46,8 @@ class User_db:
             user = auth.sign_in_with_email_and_password(self.email, self.password)  # replace this with your username and password of the account
             #print(user)# display the user information, if successful
         except:
-            print("Not authorized")
+            #print("Not authorized")
+            print("\n")
             #user = None
 
 
